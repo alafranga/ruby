@@ -1,2 +1,2 @@
-Ruby code compendia
-===================
+Ruby code compendium
+====================
