@@ -1,0 +1,76 @@
+root      = "src"
+extension =  ".rb"
+
+# array {{{
+[[symbols]]
+	symbol  = "array/intersperse_arrays"
+# }}}
+
+# digest {{{
+[[symbols]]
+	symbol  = "digest/digest"
+# }}}
+
+# erb {{{
+[[symbols]]
+	symbol  = "erb/render"
+# }}}
+
+# file {{{
+[[symbols]]
+	symbol  = "file/deflate_path"
+[[symbols]]
+	symbol  = "file/expand_path"
+[[symbols]]
+	symbol  = "file/sanitize_path"
+[[symbols]]
+	symbol  = "file/search_path"
+[[symbols]]
+	symbol  = "file/updatelines"
+[[symbols]]
+	symbol  = "file/writelines"
+# }}}
+
+# http {{{
+[[symbols]]
+	symbol  = "http/post"
+# }}}
+
+# range {{{
+[[symbols]]
+	symbol  = "range/to_range"
+# }}}
+
+# shell {{{
+[[symbols]]
+	symbol  = "shell/runner"
+# }}}
+
+# string {{{
+[[symbols]]
+	symbol  = "string/entropy"
+[[symbols]]
+	symbol  = "string/cut"
+[[symbols]]
+	symbol  = "string/lastcut"
+[[symbols]]
+	symbol  = "string/prefix_after"
+[[symbols]]
+	symbol  = "string/prefix_before"
+[[symbols]]
+	symbol  = "string/prefixize_non_blank"
+[[symbols]]
+	symbol  = "string/refinements/underscore"
+# }}}
+
+# struct {{{
+[[symbols]]
+	symbol  = "struct/structable"
+[[symbols]]
+	symbol  = "struct/refinements/from_hash_without_bogus_keys"
+# }}}
+
+# ui {{{
+[[symbols]]
+	symbol  = "ui/color"
+# }}}
