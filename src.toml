@@ -9,6 +9,9 @@ extension =  ".rb"
 # class {{{
 [[symbols]]
 	symbol  = "class/class_attribute"
+	depends = [
+		"kernel/const"
+	]
 [[symbols]]
 	symbol  = "class/simple_class_attributes"
 # }}}
@@ -41,6 +44,11 @@ extension =  ".rb"
 # http {{{
 [[symbols]]
 	symbol  = "http/post"
+# }}}
+
+# kernel {{{
+[[symbols]]
+	symbol  = "kernel/const"
 # }}}
 
 # range {{{
