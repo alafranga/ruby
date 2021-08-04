@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../test_helper'
-
 module Test
   module Const
     # Copied from https://github.com/dry-rb/dry-core.  All kudos to the original authors.
@@ -73,11 +71,8 @@ module Test
       end
     end
   end
-
   # Stolen and improved from dry-rb/dry-core
   module ClassAttribute
-    include Const
-
     module Value
       Update = Object.new.tap do |object|
         def object.call(current_value, new_value)
@@ -102,8 +97,8 @@ module Test
       end.freeze
 
       class << self
-        def behave(behave, value = Undefined)
-          Undefined.equal?(behave) ? implicit(value) : explicit(behave)
+        def behave(behave, value = Const::Undefined)
+          Const::Undefined.equal?(behave) ? implicit(value) : explicit(behave)
         end
 
         private
@@ -132,15 +127,15 @@ module Test
     private_constant :Value
 
     # rubocop:disable Metrics/MethodLength,Layout/LineLength,Lint/RedundantCopDisableDirective
-    def define(name, default: Undefined, behave: Undefined, inherit: true, instance_reader: false)
+    def define(name, default: Const::Undefined, behave: Const::Undefined, inherit: true, instance_reader: false)
       ivar   = :"@#{name}"
       behave = Value.behave(behave, default)
 
       instance_variable_set(ivar, default.dup)
 
       mod = ::Module.new do
-        define_method(name) do |new_value = Undefined|
-          if Undefined.equal?(new_value)
+        define_method(name) do |new_value = Const::Undefined|
+          if Const::Undefined.equal?(new_value)
             return instance_variable_defined?(ivar) ? instance_variable_get(ivar) : nil
           end
 
@@ -166,29 +161,8 @@ module Test
     end
     # rubocop:enable Metrics/MethodLength,Layout/LineLength,Lint/RedundantCopDisableDirective
 
-    def defines(*names, behave: Undefined)
+    def defines(*names, behave: Const::Undefined)
       names.each { |name| define(name, behave: behave) }
-    end
-  end
-
-  class ClassAttributesTest < Minitest::Test
-    class A
-      extend Test::ClassAttribute
-
-      define :one, default: 19
-    end
-
-    def test_assign_basic
-      assert_equal(19, A.one)
-    end
-
-    B = Class.new(A) do
-      one 17
-    end
-
-    def test_assign_inherit
-      assert_equal(19, A.one)
-      assert_equal(17, B.one)
     end
   end
 end
