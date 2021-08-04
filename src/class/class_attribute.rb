@@ -1,5 +1,7 @@
 # Stolen and improved from dry-rb/dry-core
 module ClassAttribute
+  include Const
+
   module Value
     Update = Object.new.tap do |object|
       def object.call(current_value, new_value)
