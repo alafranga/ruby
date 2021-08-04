@@ -1,0 +1,16 @@
+[
+  {
+    "source": "test/class/class_attribute.rb",
+    "series": [
+      {
+        "directive": "  ... github.com/alaturka/ruby class/class_attribute\n",
+        "insertion": {
+          "before": 18,
+          "after": 148,
+          "signature": "    Undefined = Object.new.tap do |undefined| # rubocop:disable Metrics/BlockLength\n",
+          "digest": "ab0407f04db192316d1e4a5b01bc4d88a29a45b9683f23432bfad3eab90516fd"
+        }
+      }
+    ]
+  }
+]

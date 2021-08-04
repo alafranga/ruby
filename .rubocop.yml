@@ -40,6 +40,9 @@ Style/ParallelAssignment:
 
 Metrics/AbcSize:
   Max: 25
+Lint/RedundantCopDisableDirective:
+  Exclude: 
+    - "test/**/*.rb"
 Metrics/BlockLength:
   Exclude: 
     - "test/**/*.rb"
