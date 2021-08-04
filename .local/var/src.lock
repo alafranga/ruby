@@ -21,5 +21,37 @@
         }
       }
     ]
+  },
+  {
+    "source": "test/enum/enum.rb",
+    "series": [
+      {
+        "directive": "  ... github.com/alaturka/ruby const/const\n",
+        "insertion": {
+          "before": 18,
+          "after": 51,
+          "signature": "    Undefined = Object.new.tap do |undefined| # rubocop:disable Metrics/BlockLength\n",
+          "digest": "10146b20634267bd708237796fd9a905d52ca9bc1b941ca9d726ade74f0e4363"
+        }
+      },
+      {
+        "directive": "  ... github.com/alaturka/ruby class/class_attribute\n",
+        "insertion": {
+          "before": 55,
+          "after": 38,
+          "signature": "    # rubocop:disable Metrics/MethodLength,Layout/LineLength,Lint/RedundantCopDisableDirective\n",
+          "digest": "a24e84208d9a52785f1c47ffa5838f1c8effec1c20d49ea77e178897ccb4c59e"
+        }
+      },
+      {
+        "directive": "  ... github.com/alaturka/ruby enum/enum\n",
+        "insertion": {
+          "before": 12,
+          "after": 40,
+          "signature": "      raise ArgumentError, \"Invalid enum value: #{value}\" unless self.class.values.member?(value = value.to_sym)\n",
+          "digest": "8de8ef8afd6e5c91df1fb55011a2ae4732a3757c38a0528426f726d4f0443b05"
+        }
+      }
+    ]
   }
 ]
