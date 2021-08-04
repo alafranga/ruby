@@ -6,6 +6,13 @@ extension =  ".rb"
 	symbol  = "array/intersperse_arrays"
 # }}}
 
+# class {{{
+[[symbols]]
+	symbol  = "class/class_attribute"
+[[symbols]]
+	symbol  = "class/simple_class_attributes"
+# }}}
+
 # digest {{{
 [[symbols]]
 	symbol  = "digest/digest"
@@ -73,4 +80,9 @@ extension =  ".rb"
 # ui {{{
 [[symbols]]
 	symbol  = "ui/color"
+# }}}
+
+# xml {{{
+[[symbols]]
+	symbol  = "xml/prettify"
 # }}}
