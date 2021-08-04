@@ -9,9 +9,6 @@ extension =  ".rb"
 # class {{{
 [[symbols]]
 	symbol  = "class/class_attribute"
-	depends = [
-		"kernel/const"
-	]
 [[symbols]]
 	symbol  = "class/simple_class_attributes"
 # }}}

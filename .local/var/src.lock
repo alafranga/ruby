@@ -3,12 +3,21 @@
     "source": "test/class/class_attribute.rb",
     "series": [
       {
-        "directive": "  ... github.com/alaturka/ruby class/class_attribute\n",
+        "directive": "  ... github.com/alaturka/ruby kernel/const\n",
         "insertion": {
           "before": 18,
-          "after": 148,
+          "after": 51,
           "signature": "    Undefined = Object.new.tap do |undefined| # rubocop:disable Metrics/BlockLength\n",
-          "digest": "ab0407f04db192316d1e4a5b01bc4d88a29a45b9683f23432bfad3eab90516fd"
+          "digest": "10146b20634267bd708237796fd9a905d52ca9bc1b941ca9d726ade74f0e4363"
+        }
+      },
+      {
+        "directive": "  ... github.com/alaturka/ruby class/class_attribute\n",
+        "insertion": {
+          "before": 55,
+          "after": 38,
+          "signature": "    # rubocop:disable Metrics/MethodLength,Layout/LineLength,Lint/RedundantCopDisableDirective\n",
+          "digest": "e33d161b0d9d1440e1f865b083614560be743c3a10f3b8f64a94ddea94506dd0"
         }
       }
     ]
