@@ -13,9 +13,19 @@ extension =  ".rb"
 	symbol  = "class/simple_class_attributes"
 # }}}
 
+# const {{{
+[[symbols]]
+	symbol  = "const/const"
+# }}}
+
 # digest {{{
 [[symbols]]
 	symbol  = "digest/digest"
+# }}}
+
+# enum {{{
+[[symbols]]
+	symbol  = "enum/enum"
 # }}}
 
 # erb {{{
@@ -41,11 +51,6 @@ extension =  ".rb"
 # http {{{
 [[symbols]]
 	symbol  = "http/post"
-# }}}
-
-# kernel {{{
-[[symbols]]
-	symbol  = "kernel/const"
 # }}}
 
 # range {{{

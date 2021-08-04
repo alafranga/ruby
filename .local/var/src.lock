@@ -3,7 +3,7 @@
     "source": "test/class/class_attribute.rb",
     "series": [
       {
-        "directive": "  ... github.com/alaturka/ruby kernel/const\n",
+        "directive": "  ... github.com/alaturka/ruby const/const\n",
         "insertion": {
           "before": 18,
           "after": 51,
