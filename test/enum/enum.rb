@@ -203,6 +203,8 @@ module Test
     end
 
     class << self
+      require 'set'
+
       def of(*members) # rubocop:disable Metrics/MethodLength
         values Set.new(members.map(&:to_sym)).freeze
 
