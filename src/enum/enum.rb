@@ -47,6 +47,8 @@ class Enum
         def self.call(value)
           new(value)
         end
+
+        define_singleton_method(:default) { members.first }
       end
     end
   end
