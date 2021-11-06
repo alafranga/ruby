@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	doing Cleaning up
+
+	local dir
+	for dir in .local/var .local/tmp; do
+		rm -rf "${dir:?}"/* && find "${dir:?}" -maxdepth 1 -name '.*' -not -name '.gitignore' -exec rm -rf {} +
+	done
+
+	[[ ! -x .local/libexec/clean ]] || .local/libexec/clean
+}
+
+main "$@"

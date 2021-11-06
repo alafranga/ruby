@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	local source_files=() offensive_files=()
+
+	mapfile -t source_files < <(
+		find . -type f -name '*.rb' -not -path './.*' -not -path '*/vendor/*'
+	)
+
+	local source
+
+	for source in "${source_files[@]}"; do
+		bexec ruby -c "$source" &>/dev/null || offensive_files+=("$source")
+	done
+
+	local err=0
+
+	if [[ ${#offensive_files[@]} -gt 0 ]]; then
+		((++err))
+
+		warn "[en] The following files are not valid Ruby source code.  You need to fix them."
+		warn "[tr] Aşağıdaki dosyalar geçerli birer Ruby kaynak kodu değil.  Düzeltmeniz gerekiyor."
+		warn
+
+		for source in "${offensive_files[@]}"; do
+			warn "\t$source"
+		done
+	fi
+
+	[[ ! -x .local/libexec/preflight ]] || .local/libexec/preflight || ((++err))
+
+	return "$err"
+}
+
+main "$@"

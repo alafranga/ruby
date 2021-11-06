@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	[[ -n ${BUNDLE_GEMFILE:-} ]] || return 0
+
+	if [[ -z ${GITHUB_WORKFLOW:-} ]] || [[ ${1:-} == -manual ]]; then
+		doing Installing dependencies
+
+		bundle check &>/dev/null || bundle install
+	else
+		# We prefer ruby/setup actions for Bundler, since it provides a cache.
+		# Setup setup/ruby action via environment (except BUNDLE_JOBS which should be left as the default)
+	
+		[[ -z ${GITHUB_ENV:-} ]] || {
+			echo "BUNDLE_GEMFILE=$BUNDLE_GEMFILE"
+			echo "BUNDLE_PATH=$BUNDLE_PATH"
+			echo "BUNDLE_BIN=$BUNDLE_BIN"
+		} >>"$GITHUB_ENV"
+
+		[[ -z ${GITHUB_PATH:-} ]] || {
+			echo "$BUNDLE_BIN"
+		} >>"$GITHUB_PATH"
+	fi
+
+	[[ ! -x .local/libexec/boot ]] || .local/libexec/boot
+}
+
+main "$@"

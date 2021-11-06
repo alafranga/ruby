@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	doing Linting
+
+	if [[ -f .local/etc/rubocop/default.yml ]]; then
+		bexec rubocop --config .local/etc/rubocop/default.yml --display-style-guide --extra-details "$@"
+	else
+		bexec rubocop --display-style-guide --extra-details "$@"
+	fi
+
+	[[ ! -x .local/libexec/lint ]] || .local/libexec/lint
+}
+
+main "$@"

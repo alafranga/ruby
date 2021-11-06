@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	[[ -x .local/libexec/grade/$1 ]] || abort "No such grader: .local/libexec/grade/$1"
+
+	bexec .local/libexec/grade/"$1" "${@:2}"
+}
+
+main "$@"

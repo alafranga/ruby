@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	doing Playing
+
+	# Do explicitly spoken and return
+
+	if [[ -x .local/libexec/play ]]; then
+		bexec .local/libexec/play "$@"
+		return
+	fi
+
+	local name=${PWD##*/} candidate
+
+	# Try a single bin/<executable>
+
+	local candidates=()
+
+	for candidate in bin/*; do
+		[[ ! -x $candidate ]] || candidates+=("$candidate")
+	done
+
+	if [[ ${#candidates[@]} -eq 1 ]]; then
+		bexec "${candidates[0]}" "$@"
+		return
+	fi
+
+	# Try bin/<name>, ./<name> executables
+
+	for candidate in bin/$name ./$name; do
+		if [[ -x $candidate ]]; then
+			bexec "$candidate" "$@"
+			return
+		fi
+	done
+
+	# Try a single <file>.rb file
+
+	local candidates=()
+
+	for candidate in *.rb; do
+		[[ ! -f $candidate ]] || candidates+=("$candidate")
+	done
+
+	if [[ ${#candidates[@]} -eq 1 ]]; then
+		bexec ruby "${candidates[0]}" "$@"
+		return
+	fi
+
+	# Try <name>.rb, main.rb files
+
+	for candidate in "$name".rb main.rb; do
+		if [[ -f $candidate ]]; then
+			bexec ruby "$candidate" "$@"
+			return
+		fi
+	done
+
+	abort "Couldn't determine the main file"
+}
+
+main "$@"

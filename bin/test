@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	doing Testing
+
+	if [[ -x .local/libexec/test ]]; then
+		.local/libexec/test "$@"
+	elif [[ -f Rakefile ]]; then
+		bexec rake test "$@"
+	elif [[ -d test ]]; then
+		bexec ruby -Ilib -e 'ARGV.each(&method(:require))' ./test/test*.rb
+	else
+		warn 'Nothing to test'
+	fi
+}
+
+main "$@"

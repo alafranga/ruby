@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail; shopt -s nullglob; unset CDPATH; IFS=$' \t\n'
+
+export LC_ALL=C.UTF-8 LANG=C.UTF-8
+
+cd "${0%/*}"/../.. || exit
+
+abort() {
+	echo -e "\e[1m\e[38;5;9m✗\e[0m \e[1m$*\e[0m" >&2
+	exit 1
+}
+
+doing() {
+	echo -e "\e[1m\e[38;5;14m>\e[0m \e[1m$*\e[0m" >&2
+}
+
+warn() {
+	echo -e "\e[1m\e[38;5;11m!\e[0m $*\e[0m" >&2
+}
+
+main() {
+	[[ ${EUID:-} -ne 0       ]] || abort "Run without root permissions"
+	[[ ! -x .local/sbin/boot ]] || sudo .local/sbin/boot
+	[[ ! -x .local/bin/setup ]] || .local/bin/setup
+}
+
+main "$@"

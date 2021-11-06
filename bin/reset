@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	doing Resetting
+
+	"${BASH_SOURCE[0]%/*}"/clean
+
+	[[ ! -x .local/libexec/reset ]] || .local/libexec/reset
+}
+
+main "$@"
