@@ -18,7 +18,7 @@ warn() {
 }
 
 init() {
-	cd "${BASH_SOURCE[0]%/*}"/../.. || exit
+	cd "${BASH_SOURCE[0]%/*}"/../.. || exit # FIXME
 
 	for BUNDLE_GEMFILE in Gemfile .local/etc/Gemfile; do
 		if [[ -f $BUNDLE_GEMFILE ]]; then
