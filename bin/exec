@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	doing Executing
+
+	bexec "$@"
+}
+
+main "$@"
