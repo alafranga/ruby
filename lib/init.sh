@@ -18,7 +18,15 @@ warn() {
 }
 
 init() {
-	cd "${BASH_SOURCE[0]%/*}"/../.. || exit # FIXME
+	local dir
+
+	if [[ -d ${LOCAL_DIR:-} ]]; then
+		dir="$LOCAL_DIR"
+	else
+		dir="${BASH_SOURCE[0]%/*}"/../..
+	fi 
+
+	cd "$dir" || abort "Failed to chdir: $dir"
 
 	for BUNDLE_GEMFILE in Gemfile .local/etc/Gemfile; do
 		if [[ -f $BUNDLE_GEMFILE ]]; then
@@ -33,6 +41,8 @@ init() {
 
 	# Simple case; no Gemfile, no Bundler
 	if [[ -z ${BUNDLE_GEMFILE:-} ]]; then
+		[[ -d .local ]] || warn "No .local directory found at: ${PWD:-}"
+
 		bexec() {
 			"$@"
 		}

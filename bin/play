@@ -12,7 +12,7 @@ main() {
 		return
 	fi
 
-	local name=${PWD##*/} candidate
+	local candidate
 
 	# Try a single bin/<executable>
 
@@ -28,6 +28,8 @@ main() {
 	fi
 
 	# Try bin/<name>, ./<name> executables
+
+	local name=${PWD##*/}
 
 	for candidate in bin/$name ./$name; do
 		if [[ -x $candidate ]]; then
