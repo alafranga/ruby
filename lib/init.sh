@@ -24,7 +24,7 @@ init() {
 		dir="$LOCAL_DIR"
 	else
 		dir="${BASH_SOURCE[0]%/*}"/../..
-	fi 
+	fi
 
 	cd "$dir" || abort "Failed to chdir: $dir"
 
