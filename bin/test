@@ -10,7 +10,11 @@ main() {
 	elif [[ -f Rakefile ]]; then
 		bexec rake test "$@"
 	elif [[ -d test ]]; then
-		bexec ruby -Ilib -e 'ARGV.each(&method(:require))' ./test/test*.rb
+		if [[ $# -eq 0 ]]; then
+			bexec ruby -Ilib -e 'ARGV.each(&method(:require))' ./test/**/*_test.rb
+		else
+			bexec ruby -Ilib -e 'ARGV.each(&method(:require))' "$@"
+		fi
 	else
 		warn 'Nothing to test'
 	fi
