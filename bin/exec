@@ -3,7 +3,7 @@
 builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
 
 main() {
-	doing Executing
+	doing Executing "'$*'"
 
 	bexec "$@"
 }
