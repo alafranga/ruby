@@ -3,7 +3,7 @@
 builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
 
 main() {
-	[[ ${EUID:-} -ne 0                          ]] || abort "Run without root permissions"
+	[[ ${EUID:-} -ne 0                          ]] || abort "Run without root permissions (avoid using sudo)"
 	[[ ! -x "${BASH_SOURCE[0]%/*}"/boot         ]] || sudo "${BASH_SOURCE[0]%/*}"/boot
 	[[ ! -x "${BASH_SOURCE[0]%/*}"/../bin/setup ]] || "${BASH_SOURCE[0]%/*}"/../bin/setup
 }
