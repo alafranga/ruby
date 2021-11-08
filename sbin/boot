@@ -6,6 +6,8 @@ main() {
 	[[ ${EUID:-} -eq 0 ]] || abort "Run with sudo"
 
 	if [[ "$(</proc/sys/kernel/osrelease)" == *Microsoft ]]; then # WSL
+		doing Installing system dependencies under WSL
+
 		local debs=() gems=()
 
 		command -v ruby &>/dev/null || debs+=(ruby-all-dev)
@@ -22,6 +24,12 @@ main() {
 		if [[ ${#gems[@]} -gt 0 ]]; then
 			gem install "${gems[@]}"
 		fi
+
+		[[ ! -x .local/libexec/boot/wsl ]] || .local/libexec/boot/wsl
+	elif command -v apt-get &>/dev/null && [[ -x .local/libexec/boot/debian ]]; then
+		doing Installing system dependencies
+
+		.local/libexec/boot/debian
 	fi
 }
 
