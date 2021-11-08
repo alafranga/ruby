@@ -10,11 +10,11 @@ main() {
 
 		local debs=() gems=()
 
-		command -v ruby &>/dev/null || debs+=(ruby-all-dev)
-		command -v git  &>/dev/null || debs+=(git)
-		command -v curl &>/dev/null || debs+=(curl)
+		builtin type -P ruby &>/dev/null || debs+=(ruby-all-dev)
+		builtin type -P git  &>/dev/null || debs+=(git)
+		builtin type -P curl &>/dev/null || debs+=(curl)
 
-		command -v bundle &>/dev/null || gems+=(bundler)
+		builtin type -P bundle &>/dev/null || gems+=(bundler)
 
 		if [[ ${#debs[@]} -gt 0 ]]; then
 			command -v apt-get &>/dev/null || abort "Only Debian and derivatives (e.g. Ubuntu) supported"
