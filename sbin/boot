@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+builtin source "${BASH_SOURCE[0]%/*}"/../lib/init.sh
+
+main() {
+	[[ ${EUID:-} -eq 0 ]] || abort "Run with sudo"
+
+	if [[ "$(</proc/sys/kernel/osrelease)" == *Microsoft ]]; then # WSL
+		local debs=() gems=()
+
+		command -v ruby &>/dev/null || debs+=(ruby-all-dev)
+		command -v git  &>/dev/null || debs+=(git)
+		command -v curl &>/dev/null || debs+=(curl)
+
+		command -v bundle &>/dev/null || gems+=(bundler)
+
+		if [[ ${#debs[@]} -gt 0 ]]; then
+			command -v apt-get &>/dev/null || abort "Only Debian and derivatives (e.g. Ubuntu) supported"
+			apt-get -y update && apt-get -y install "${debs[@]}"
+		fi
+
+		if [[ ${#gems[@]} -gt 0 ]]; then
+			gem install "${gems[@]}"
+		fi
+	fi
+}
+
+main "$@"
